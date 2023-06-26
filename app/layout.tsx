@@ -5,6 +5,7 @@ import RegisterModal from './components/modals/RegisterModal'
 import ToasterProvider from './providers/ToastifyProvider'
 import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
+import RentModal from './components/modals/RentModal'
 
 export const metadata = {
   title: 'Vi BnB',
@@ -21,6 +22,7 @@ export default async function RootLayout({ children } : {children: React.ReactNo
       <body className={font.className}>
         <ToasterProvider />
         <RegisterModal />
+        <RentModal />
         <LoginModal />
         <Navbar currentUser={currentUser}/>
         <div className="pb-20 pt-28">

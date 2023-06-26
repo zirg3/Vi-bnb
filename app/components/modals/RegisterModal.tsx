@@ -13,10 +13,11 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { Zoom, toast } from 'react-toastify'
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal= () => {
   const registerModal = useRegisterModal();
-  // const loginModal = useLoginModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const { 
@@ -47,6 +48,12 @@ const RegisterModal= () => {
         setIsLoading(false)
       })
   }
+
+    const onToggle = useCallback(() => {
+    loginModal.onOpen();
+    registerModal.onClose();
+  }, [loginModal, registerModal])
+
 
   const bodyContent = (
     <form className="flex flex-col gap-4">
@@ -117,13 +124,13 @@ const RegisterModal= () => {
       >
         <p>Уже есть аккаунт?
           <span 
-            onClick={registerModal.onClose} 
+            onClick={onToggle} 
             className="
               text-neutral-800
               cursor-pointer 
               hover:underline
             "
-            > Log in</span>
+            > Войти</span>
         </p>
       </div>
     </div>
